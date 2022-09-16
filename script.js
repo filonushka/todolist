@@ -1,15 +1,19 @@
 const newToDoForm = document.querySelector(".todo-form");
 const list = document.querySelector(".list");
 
-function addTask(text) {
+function addTask(done, text) {
   const li = document.createElement("li");
-  li.append(text);
+  const checkbox = document.createElement("input");
+  checkbox.setAttribute("type", "checkbox");
+  checkbox.checked = done;
+  li.append(checkbox, text);
   list.appendChild(li);
 }
 
 function handleSubmit(e) {
   const text = newToDoForm.text.value;
-  addTask(text);
+  const done = newToDoForm.done.checked;
+  addTask(done, text);
   newToDoForm.text.value = "";
   e.preventDefault();
 }
