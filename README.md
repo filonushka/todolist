@@ -1,5 +1,5 @@
 # Simple TODO LIST 
 
 like this one:   
-[todo list ui](./todoListUI.jpg)
+![todo list ui](./todoListUI.jpg)
 
