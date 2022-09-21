@@ -23,11 +23,21 @@
       </form>
       <div class="list-block">
         <ul class="list">
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
+          <li draggable="true">Add CSS</li>
+          <li draggable="true">Update README</li>
+          <li draggable="true">Commit changes</li>
         </ul>
+        <div class="status-block">
+          <div class="left-items">5 items left</div>
+          <div class="filters">
+            <button class="all-items__button button">All</button>
+            <button class="active-items__button button">Active</button>
+            <button class="completed-items__button button">Completed</button>
+          </div>
+          <button class="clear-all__button button">Clear Completed</button>
+        </div>
       </div>
+      <div class="info-block">Drag and drop to reorder list</div>
     </div>
   </body>
 </html>
