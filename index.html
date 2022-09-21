@@ -4,21 +4,30 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TODOLIST</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>TODO LIST</title>
     <script defer src="./script.js"></script>
   </head>
   <body>
-    <h1>TODO</h1>
-    <form class="todo-form">
-      <input type="checkbox" name="done" />
-      <input type="text" name="text" placeholder="Task text..." />
-    </form>
-    <div>
-      <ul class="list">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-      </ul>
+    <div class="container">
+      <h1>TODO</h1>
+      <form class="todo-form">
+        <input type="checkbox" name="done" />
+        <input type="text" name="text" placeholder="Task text..." />
+      </form>
+      <div class="list-block">
+        <ul class="list">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>
