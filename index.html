@@ -25,7 +25,16 @@
         <ul class="list">
           <li draggable="true">Add CSS</li>
           <li draggable="true">Update README</li>
-          <li draggable="true">Commit changes</li>
+          <li draggable="true">
+            <input type="checkbox" id="task-done" hidden/>
+            <label class="task-done" for="task-done">
+              <span>
+                <svg width="12px" height="9px" viewbox="0 0 12 9">
+                  <polyline points="1 5 4 8 11 1"></polyline>
+                </svg>
+              </label>
+            Commit changes
+          </li>
         </ul>
         <div class="status-block">
           <div class="left-items">5 items left</div>
@@ -34,7 +43,12 @@
             <button class="active-items__button button">Active</button>
             <button class="completed-items__button button">Completed</button>
           </div>
-          <button class="clear-all__button button">Clear Completed</button>
+          <div class="clear__buttons">
+            <button class="clear-completed__button button">
+              Clear Completed
+            </button>
+            <button class="clear-all__button button">Clear All</button>
+          </div>
         </div>
       </div>
       <div class="info-block">Drag and drop to reorder list</div>
