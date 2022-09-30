@@ -8,7 +8,8 @@ const completedItemsButton = document.querySelector(".completed-items__button");
 
 const todoArray = JSON.parse(localStorage.getItem("tasks")) ?? [];
 //рендеринг сохраненных данных при обновлении страницы
-todoArray.forEach((task) => addTask(task.done, task.name, task.id));
+todoArray.forEach((task) => renderTask(task.done, task.text, task.id));
+//- todoArray.forEach(({ done, text, id }) => renderTask(done, text, id));
 
 clearCompletedButton.addEventListener("click", handleClearCompleted);
 clearAllButton.addEventListener("click", handleClearAll);
@@ -16,7 +17,7 @@ allItemsButton.addEventListener("click", handleAllItemsButton);
 activeItemsButton.addEventListener("click", handleActiveItemsButton);
 completedItemsButton.addEventListener("click", handleCompletedItemsButton);
 
-function addTask(done, text, id) {
+function renderTask(done, text, id) {
   const li = document.createElement("li");
   li.setAttribute("draggable", "true");
   li.setAttribute("data-id", id);
@@ -26,6 +27,7 @@ function addTask(done, text, id) {
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
   checkbox.checked = done;
+  checkbox.addEventListener("change", handleChangeStatus);
 
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("delete__button");
@@ -40,23 +42,18 @@ function addTask(done, text, id) {
 function handleSubmit(e) {
   const text = newToDoForm.text.value;
   const done = newToDoForm.done.checked;
-  e.preventDefault();
+  const id = Date.now();
   if (text === "") {
     return;
   }
   newToDoForm.text.value = "";
 
-  const task = {
-    name: text,
-    id: Date.now(),
-    done: done,
-  };
-
+  const task = { text, id, done };
   todoArray.push(task);
 
-  addTask(done, text, task.id);
-
+  renderTask(done, text, id);
   localStorage.setItem("tasks", JSON.stringify(todoArray));
+  e.preventDefault();
 }
 
 function handleClickDelete(e) {
@@ -89,4 +86,11 @@ function handleActiveItemsButton() {
 
 function handleCompletedItemsButton() {
   console.log("Completed");
+}
+
+function handleChangeStatus(e) {
+  const id = e.target.closest("li").dataset.id;
+  const task = todoArray.find((task) => task.id == id);
+  task.done = e.target.checked;
+  localStorage.setItem("tasks", JSON.stringify(todoArray));
 }
