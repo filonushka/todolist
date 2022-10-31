@@ -169,6 +169,7 @@ body .container input[type=text] {
   padding: 5px;
   float: left;
   font-size: 14px;
+  outline: none;
 }
 body:not(:hover) .todo-form,
 body:not(:hover) .list-block {
