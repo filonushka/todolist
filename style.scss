@@ -159,6 +159,7 @@ body {
 
         .filters {
           display: flex;
+          gap: 10px;
 
           label:has(:checked) {
             font-weight: bold;

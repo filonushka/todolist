@@ -143,6 +143,7 @@ body .container .list-block .status-block .left-items {
 }
 body .container .list-block .status-block .filters {
   display: flex;
+  gap: 10px;
 }
 body .container .list-block .status-block .filters label:has(:checked) {
   font-weight: bold;
