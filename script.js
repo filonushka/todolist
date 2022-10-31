@@ -67,11 +67,10 @@ function handleChangeStatus(e) {
   localStorage.setItem("tasks", JSON.stringify(todoArray));
 }
 
-function clearTasks(done) {
+function clearTasks() {
   todoArray = todoArray.filter((task) => {
-    if (!done) {
-      return task;
+    if (task.done) {
+      console.log(todoArray.task.done);
     }
   });
-  console.log(todoArray);
 }

@@ -172,6 +172,39 @@ body .container input[type=text] {
   font-size: 14px;
   outline: none;
 }
+body .footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  flex-direction: column;
+  color: #3d2872;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+}
+body .links {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+body .links .link {
+  width: 35px;
+  height: 35px;
+  background-repeat: no-repeat;
+}
+body .links .github_link {
+  background-image: url(./assets/svg/github.svg);
+}
+body .links .linkedin_link {
+  background-image: url(./assets/svg/linkedin.svg);
+}
+body .links .instagram_link {
+  background-image: url(./assets/svg/instagram.svg);
+}
 body:not(:hover) .todo-form,
 body:not(:hover) .list-block {
   background-color: rgba(255, 255, 255, 0.3) !important;
