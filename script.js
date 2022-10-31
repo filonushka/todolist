@@ -2,20 +2,16 @@ const newToDoForm = document.querySelector(".todo-form");
 const list = document.querySelector(".list");
 const clearCompletedButton = document.querySelector(".clear-completed__button");
 const clearAllButton = document.querySelector(".clear-all__button");
-const allItemsButton = document.querySelector(".all-items__button");
-const activeItemsButton = document.querySelector(".active-items__button");
-const completedItemsButton = document.querySelector(".completed-items__button");
 
-const todoArray = JSON.parse(localStorage.getItem("tasks")) ?? [];
+let todoArray = JSON.parse(localStorage.getItem("tasks")) ?? [];
 //рендеринг сохраненных данных при обновлении страницы
+list.replaceChildren();
 todoArray.forEach((task) => renderTask(task.done, task.text, task.id));
 //- todoArray.forEach(({ done, text, id }) => renderTask(done, text, id));
 
-clearCompletedButton.addEventListener("click", handleClearCompleted);
-clearAllButton.addEventListener("click", handleClearAll);
-allItemsButton.addEventListener("click", handleAllItemsButton);
-activeItemsButton.addEventListener("click", handleActiveItemsButton);
-completedItemsButton.addEventListener("click", handleCompletedItemsButton);
+newToDoForm.addEventListener("submit", handleSubmit);
+clearCompletedButton.addEventListener("click", () => clearTasks(true));
+clearAllButton.addEventListener("click", () => clearTasks());
 
 function renderTask(done, text, id) {
   const li = document.createElement("li");
@@ -35,7 +31,7 @@ function renderTask(done, text, id) {
   deleteButton.addEventListener("click", handleClickDelete);
 
   label.append(checkbox, text);
-  li.append(deleteButton, label);
+  li.append(label, deleteButton);
   list.appendChild(li);
 }
 
@@ -64,33 +60,18 @@ function handleClickDelete(e) {
   localStorage.setItem("tasks", JSON.stringify(todoArray));
 }
 
-newToDoForm.addEventListener("submit", handleSubmit);
-
-function handleClearCompleted() {
-  console.log("Clear completed");
-}
-
-function handleClearAll() {
-  list.innerHTML = "";
-  todoArray.length = 0;
-  localStorage.setItem("tasks", JSON.stringify(todoArray));
-}
-
-function handleAllItemsButton() {
-  console.log("All");
-}
-
-function handleActiveItemsButton() {
-  console.log("Active");
-}
-
-function handleCompletedItemsButton() {
-  console.log("Completed");
-}
-
 function handleChangeStatus(e) {
   const id = e.target.closest("li").dataset.id;
   const task = todoArray.find((task) => task.id == id);
   task.done = e.target.checked;
   localStorage.setItem("tasks", JSON.stringify(todoArray));
+}
+
+function clearTasks(done) {
+  todoArray = todoArray.filter((task) => {
+    if (!done) {
+      return task;
+    }
+  });
+  console.log(todoArray);
 }

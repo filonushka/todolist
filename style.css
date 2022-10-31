@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
 }
@@ -31,6 +32,16 @@ body .container::before {
   position: absolute;
   left: 70px;
 }
+body .container .button {
+  font-family: "Prompt", sans-serif;
+  font-size: 11px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+body .container .button:hover {
+  font-weight: 500;
+}
 body .container .todo-form {
   background-color: #ffffff;
   display: flex;
@@ -41,13 +52,6 @@ body .container .todo-form {
   box-shadow: 4px 4px 10px 2px rgba(65, 72, 86, 0.7);
   margin-bottom: 5px;
   transition: 1s;
-}
-body .container .todo-form input[type=text] {
-  border: none;
-  width: 90%;
-  padding: 5px;
-  float: left;
-  font-size: 14px;
 }
 body .container .list-block {
   background-color: #ffffff;
@@ -80,94 +84,34 @@ body .container .list-block .list li:hover {
   background: #eee;
   opacity: 0.5;
 }
-body .container .list-block .list li .task-done {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-   -ms-user-select: none;
-       user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  cursor: pointer;
+body .container .list-block .list li label {
+  justify-content: center;
+  display: flex;
 }
-body .container .list-block .list li .task-done span {
+body .container .list-block .list li label input {
+  display: none;
+}
+body .container .list-block .list li label::before {
+  background-color: transparent;
+  border: 1px solid #3d2872;
+  margin: 0 auto;
+  border-radius: 100%;
+  content: " ";
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  transition: all 0.1s ease-in, border-color 0.05s ease-in;
+}
+body .container .list-block .list li label:has(:checked)::before {
+  content: "✓";
+  justify-content: center;
+  text-align: center;
   display: inline-block;
-  vertical-align: middle;
-  transform: translate3d(0, 0, 0);
-}
-body .container .list-block .list li .task-done span:first-child {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  transform: scale(1);
-  vertical-align: middle;
-  border: 1px solid #b9b8c3;
-  transition: all 0.2s ease;
-}
-body .container .list-block .list li .task-done span:first-child svg {
-  position: absolute;
-  z-index: 1;
-  top: 8px;
-  left: 6px;
-  fill: none;
-  stroke: white;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 16px;
-  stroke-dashoffset: 16px;
-  transition: all 0.3s ease;
-  transition-delay: 0.1s;
-  transform: translate3d(0, 0, 0);
-}
-body .container .list-block .list li .task-done span:first-child:before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: #506eec;
-  display: block;
-  transform: scale(0);
-  opacity: 1;
-  border-radius: 50%;
-  transition-delay: 0.2s;
-}
-body .container .list-block .list li .task-done span:last-child {
-  margin: 0 10px;
-}
-body .container .list-block .list li .task-done span:last-child:after {
-  content: "";
-  position: absolute;
-  top: 8px;
-  left: 0;
-  height: 1px;
-  width: 100%;
-  background: #b9b8c3;
-  transform-origin: 0 0;
-  transform: scaleX(0);
-}
-body .container .list-block .list li .task-done:hover span:first-child {
-  border-color: #3c53c7;
-}
-body .container .list-block .list li .task-done:checked and body .container .list-block .list li .task-donespan:first-child {
-  border-color: #3c53c7;
-  background: #3c53c7;
-  -webkit-animation: check 0.6s ease;
-          animation: check 0.6s ease;
-}
-body .container .list-block .list li .task-done:checked and body .container .list-block .list li .task-donespan:first-child svg {
-  stroke-dashoffset: 0;
-}
-body .container .list-block .list li .task-done:checked and body .container .list-block .list li .task-donespan:first-child::before {
-  transform: scale(2.2);
-  opacity: 0;
-  transition: all 0.6s ease;
-}
-body .container .list-block .list li .task-done:checked and body .container .list-block .list li .task-donespan:last-child {
-  color: #b9b8c3;
-  transition: all 0.3s ease;
-}
-body .container .list-block .list li .task-done:checked + body .container .list-block .list li .task-donespan:last-child:after {
-  transform: scaleX(1);
-  transition: all 0.3s ease;
+  color: #fff;
+  border-color: #3d2872;
+  background-color: #3d2872;
+  width: 15px;
+  height: 15px;
 }
 body .container .list-block .list li .delete__button {
   position: absolute;
@@ -182,15 +126,7 @@ body .container .list-block .list li .delete__button {
 body .container .list-block .list li .delete__button:hover {
   opacity: 1;
 }
-body .container:not(:hover) .todo-form,
-body .container:not(:hover) .list-block {
-  background-color: rgba(255, 255, 255, 0.3) !important;
-}
-body .container:not(:hover) input,
-body .container:not(:hover) form {
-  background-color: rgba(255, 255, 255, 0);
-}
-body .status-block {
+body .container .list-block .status-block {
   display: flex;
   font-size: 12px;
   align-items: center;
@@ -201,31 +137,44 @@ body .status-block {
   padding: 5px 10px;
   border-top: 0.5px solid rgba(65, 72, 86, 0.2);
 }
-body .status-block .left-items {
+body .container .list-block .status-block .left-items {
   opacity: 0.5;
   font-size: 12px;
 }
-body .status-block .filters {
+body .container .list-block .status-block .filters {
   display: flex;
 }
-body .status-block .clear__buttons {
+body .container .list-block .status-block .filters label:has(:checked) {
+  font-weight: bold;
+}
+body .container .list-block .status-block .clear__buttons {
   display: flex;
 }
-.info-block {
+body .container .list-block:has([value=active]:checked) li:has(:checked) {
+  display: none;
+}
+body .container .list-block:has([value=completed]:checked) li:not(:has(:checked)) {
+  display: none;
+}
+body .container .info-block {
   font-size: 12px;
   text-align: center;
   margin-top: 20px;
   color: #282828;
   opacity: 0.6;
 }
-
-.button {
-  font-family: "Prompt", sans-serif;
-  font-size: 11px;
-  background-color: transparent;
+body .container input[type=text] {
   border: none;
-  cursor: pointer;
+  width: 90%;
+  padding: 5px;
+  float: left;
+  font-size: 14px;
 }
-.button:hover {
-  font-weight: 500;
+body:not(:hover) .todo-form,
+body:not(:hover) .list-block {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+body:not(:hover) input,
+body:not(:hover) form {
+  background-color: rgba(255, 255, 255, 0);
 }/*# sourceMappingURL=style.css.map */

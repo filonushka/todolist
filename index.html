@@ -12,28 +12,58 @@
     />
     <link rel="stylesheet" href="./style.css" />
     <title>TODO LIST</title>
+    <!-- <script defer src="./script.js"></script> -->
     <script defer src="./script.js"></script>
   </head>
+
   <body>
     <div class="container">
       <h1>TODO</h1>
+
       <form class="todo-form">
-        <input type="checkbox" name="done" />
-        <input type="text" name="text" placeholder="Task text..." />
+        <input type="checkbox" name="done" hidden />
+        <input type="text" name="text" placeholder="Task to be done..." />
       </form>
+
       <div class="list-block">
         <ul class="list">
           <!-- <svg width="12px" height="9px" viewbox="0 0 12 9">
                   <polyline points="1 5 4 8 11 1"></polyline>
                 </svg> -->
+          <li draggable="true" data-id="1666911059212">
+            <label><input type="checkbox" />Task</label>
+            <button class="delete__button">x</button>
+          </li>
+
+          <li>
+            <label><input type="checkbox" />Two goats and a cat!</label>
+            <button class="delete__button">x</button>
+          </li>
+
+          <li>
+            <label><input type="checkbox" />Lorem ipsum</label>
+            <button class="delete__button">x</button>
+          </li>
         </ul>
+
         <div class="status-block">
           <div class="left-items">5 items left</div>
+
           <div class="filters">
-            <button class="all-items__button button">All</button>
-            <button class="active-items__button button">Active</button>
-            <button class="completed-items__button button">Completed</button>
+            <label>
+              <input type="radio" name="filter" hidden value="all" checked />
+              All
+            </label>
+            <label>
+              <input type="radio" name="filter" hidden value="active" />
+              Active
+            </label>
+            <label>
+              <input type="radio" name="filter" hidden value="completed" />
+              Completed
+            </label>
           </div>
+
           <div class="clear__buttons">
             <button class="clear-completed__button button">
               Clear Completed
@@ -42,6 +72,7 @@
           </div>
         </div>
       </div>
+
       <div class="info-block">Drag and drop to reorder list</div>
     </div>
   </body>
