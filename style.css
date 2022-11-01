@@ -34,13 +34,14 @@ body .container::before {
 }
 body .container .button {
   font-family: "Prompt", sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 body .container .button:hover {
-  font-weight: 500;
+  color: #3d2872;
+  font-weight: bold;
 }
 body .container .todo-form {
   background-color: #ffffff;
@@ -85,8 +86,9 @@ body .container .list-block .list li:hover {
   opacity: 0.5;
 }
 body .container .list-block .list li label {
-  justify-content: center;
   display: flex;
+  flex-grow: 1;
+  align-items: center;
 }
 body .container .list-block .list li label input {
   display: none;
@@ -94,24 +96,20 @@ body .container .list-block .list li label input {
 body .container .list-block .list li label::before {
   background-color: transparent;
   border: 1px solid #3d2872;
-  margin: 0 auto;
   border-radius: 100%;
-  content: " ";
+  content: "✔";
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
   width: 15px;
   height: 15px;
   margin-right: 5px;
-  transition: all 0.1s ease-in, border-color 0.05s ease-in;
+  transition: all 0.3s ease-in;
+  color: #fff;
+  font-size: 11px;
 }
 body .container .list-block .list li label:has(:checked)::before {
-  content: "✓";
-  justify-content: center;
-  text-align: center;
-  display: inline-block;
-  color: #fff;
-  border-color: #3d2872;
   background-color: #3d2872;
-  width: 15px;
-  height: 15px;
 }
 body .container .list-block .list li .delete__button {
   position: absolute;
@@ -137,7 +135,7 @@ body .container .list-block .status-block {
   padding: 5px 10px;
   border-top: 0.5px solid rgba(65, 72, 86, 0.2);
 }
-body .container .list-block .status-block .left-items {
+body .container .list-block .status-block .task-counter {
   opacity: 0.5;
   font-size: 12px;
 }
@@ -147,9 +145,19 @@ body .container .list-block .status-block .filters {
 }
 body .container .list-block .status-block .filters label:has(:checked) {
   font-weight: bold;
+  color: #3d2872;
 }
 body .container .list-block .status-block .clear__buttons {
   display: flex;
+}
+body .container .list-block .status-block:has([value=active]:checked) .task-counter:is(.all, .completed) {
+  display: none;
+}
+body .container .list-block .status-block:has([value=all]:checked) .task-counter:is(.active, .completed) {
+  display: none;
+}
+body .container .list-block .status-block:has([value=completed]:checked) .task-counter:is(.all, .active) {
+  display: none;
 }
 body .container .list-block:has([value=active]:checked) li:has(:checked) {
   display: none;
@@ -171,6 +179,7 @@ body .container input[type=text] {
   float: left;
   font-size: 14px;
   outline: none;
+  background: none;
 }
 body .footer {
   margin-top: 30px;
@@ -197,19 +206,18 @@ body .links .link {
   background-repeat: no-repeat;
 }
 body .links .github_link {
-  background-image: url(./assets/svg/github.svg);
+  background-image: url("./assets/svg/github.svg");
 }
 body .links .linkedin_link {
-  background-image: url(./assets/svg/linkedin.svg);
+  background-image: url("./assets/svg/linkedin.svg");
 }
 body .links .instagram_link {
-  background-image: url(./assets/svg/instagram.svg);
+  background-image: url("./assets/svg/instagram.svg");
 }
 body:not(:hover) .todo-form,
 body:not(:hover) .list-block {
   background-color: rgba(255, 255, 255, 0.3) !important;
 }
-body:not(:hover) input,
 body:not(:hover) form {
   background-color: rgba(255, 255, 255, 0);
 }/*# sourceMappingURL=style.css.map */

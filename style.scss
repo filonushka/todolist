@@ -35,14 +35,14 @@ body {
 
     .button {
       font-family: "Prompt", sans-serif;
-      font-size: 11px;
+      font-size: 12px;
       background-color: transparent;
       border: none;
       cursor: pointer;
 
       &:hover {
-        // color: #454ef7;
-        font-weight: 500;
+        color: #3d2872;
+        font-weight: bold;
       }
     }
 
@@ -92,8 +92,10 @@ body {
           }
 
           label {
-            justify-content: center;
             display: flex;
+            flex-grow: 1;
+            align-items: center;
+
             input {
               display: none;
             }
@@ -101,26 +103,21 @@ body {
             &::before {
               background-color: transparent;
               border: 1px solid #3d2872;
-              margin: 0 auto;
               border-radius: 100%;
-              content: " ";
+              content: "\2714";
+              display: inline-block;
+              justify-content: center;
+              text-align: center;
               width: 15px;
               height: 15px;
               margin-right: 5px;
-              transition: all 0.1s ease-in, border-color 0.05s ease-in;
+              transition: all 0.3s ease-in;
+              color: #fff;
+              font-size: 11px;
             }
 
             &:has(:checked)::before {
-              content: "\2713";
-              // padding: 1px;
-              justify-content: center;
-              text-align: center;
-              display: inline-block;
-              color: #fff;
-              border-color: #3d2872;
               background-color: #3d2872;
-              width: 15px;
-              height: 15px;
             }
           }
 
@@ -152,7 +149,7 @@ body {
         padding: 5px 10px;
         border-top: 0.5px solid rgba(#414856, 0.2);
 
-        .left-items {
+        .task-counter {
           opacity: 0.5;
           font-size: 12px;
         }
@@ -163,11 +160,28 @@ body {
 
           label:has(:checked) {
             font-weight: bold;
+            color: #3d2872;
           }
         }
 
         .clear__buttons {
           display: flex;
+        }
+
+        &:has([value="active"]:checked) {
+          .task-counter:is(.all, .completed) {
+            display: none;
+          }
+        }
+        &:has([value="all"]:checked) {
+          .task-counter:is(.active, .completed) {
+            display: none;
+          }
+        }
+        &:has([value="completed"]:checked) {
+          .task-counter:is(.all, .active) {
+            display: none;
+          }
         }
       }
 
@@ -199,6 +213,7 @@ body {
       float: left;
       font-size: 14px;
       outline: none;
+      background: none;
     }
   }
 
@@ -228,15 +243,15 @@ body {
     }
 
     .github_link {
-      background-image: url(./assets/svg/github.svg);
+      background-image: url("./assets/svg/github.svg");
     }
 
     .linkedin_link {
-      background-image: url(./assets/svg/linkedin.svg);
+      background-image: url("./assets/svg/linkedin.svg");
     }
 
     .instagram_link {
-      background-image: url(./assets/svg/instagram.svg);
+      background-image: url("./assets/svg/instagram.svg");
     }
   }
 
@@ -246,7 +261,6 @@ body {
       background-color: rgba(#ffffff, 0.3) !important;
     }
 
-    input,
     form {
       background-color: rgba(#ffffff, 0);
     }
